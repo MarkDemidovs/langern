@@ -67,6 +67,7 @@ app.get("/posts/:id", async (req, res) => {
                 console.log(err.message);
                 res.status(500).send(err.message);
             }
+            client.end;
         });
     } catch (err) {
         console.log(err);
@@ -87,12 +88,30 @@ app.put("/posts/:id", async (req, res) => {
                 console.log(err.message);
                 res.status(500).send(err.message);
             }
+            client.end;
         });
     } catch (err) {
         console.log(err) 
     }
 })
 // DELETE A POST
+app.delete("/posts/:id", async (req, res) => {
+    try {
+        client.query("DELETE FROM posts WHERE id = $1", [req.params.id], (err, result) => {
+            if (!err) {
+                console.log(`The post with id ${req.params.id} has been deleted`);
+                res.status(204).send();
+            } else {
+                console.log(err.message);
+                res.status(500).send(err.message);
+            }
+            client.end;
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err.message);
+    }
+});
 
 app.listen(port, ()=> {
     console.log(`server has started on port ${port}`)
