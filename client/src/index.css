@@ -2,6 +2,7 @@ body {
     background-color: #F2F0EF;
     padding: 0;
     margin: 0;
+    font-family: "Libre Franklin", serif;
 }
 
 nav {
@@ -22,7 +23,6 @@ p {
     font-size: 25px;
     font-family: "Libre Franklin", serif;
     font-weight: bold;
-    color: #41337A;
     padding-left: 6px;
 }
 
@@ -30,4 +30,52 @@ p {
     width: 25px;
     height: 25px;
     padding-right: 25px;
+}
+
+#post-header {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    font-size: larger;
+    justify-content: space-between;;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#post-header ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+}
+#post-header ul li {
+    margin-right: 10px;
+    margin-left: 6px;
+    color: #41337A;
+}
+
+#post {
+    background-color: #F9F9F9;
+    border-radius: 29px;
+    box-shadow: 0 4px 46.1px 0 rgba(0, 0, 0, 0.06); /* Add drop shadow */
+    margin-top: 25px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 28vh;
+}
+
+#headerTitle {
+    color: #41337A;
+}
+
+#userTitle {
+    font-size: 22px;
+    padding-bottom: 5px;
+}
+
+#content {
+    font-weight: 300;
+    font-size: 20px;
+    margin-left: 6px;
+    margin-right: 6px;
 }
