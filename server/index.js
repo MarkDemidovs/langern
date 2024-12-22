@@ -35,7 +35,6 @@ app.post("/posts", async (req, res) => {
     }
 });
 
-// GET ALL POSTS
 app.get("/posts", async(req,res) => {
     try {
         client.query("Select * from public.posts",(err, res)=>{
@@ -55,63 +54,11 @@ app.get("/posts", async(req,res) => {
         
     }
 })
-
 // GET A POST
-app.get("/posts/:id", async (req, res) => {
-    try {
-        client.query("SELECT * FROM posts WHERE id = $1", [req.params.id], (err, result) => {
-            if (!err) {
-                console.log(result.rows);
-                res.json(result.rows[0]); // Send the first row as JSON response
-            } else {
-                console.log(err.message);
-                res.status(500).send(err.message);
-            }
-            client.end;
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err.message);
-    }
-});
 
 // UPDATE A POST
-app.put("/posts/:id", async (req, res) => {
-    const { description, title, tags } = req.body;
 
-    try {
-        client.query("UPDATE posts SET title = $1, text = $2, tags = $3 WHERE id = $4 RETURNING *", [title, description, tags, req.params.id], (err, result) => {
-            if (!err) {
-                console.log(result.rows);
-                res.json(result.rows[0]);
-            } else {
-                console.log(err.message);
-                res.status(500).send(err.message);
-            }
-            client.end;
-        });
-    } catch (err) {
-        console.log(err) 
-    }
-})
 // DELETE A POST
-app.delete("/posts/:id", async (req, res) => {
-    try {
-        client.query("DELETE FROM posts WHERE id = $1", [req.params.id], (err, result) => {
-            if (!err) {
-                console.log(`The post with id ${req.params.id} has been deleted`);
-                res.status(204).send();
-            } else {
-                console.log(err.message);
-                res.status(500).send(err.message);
-            }
-            client.end;
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err.message);
-    }
-});
 
 app.listen(port, ()=> {
     console.log(`server has started on port ${port}`)
